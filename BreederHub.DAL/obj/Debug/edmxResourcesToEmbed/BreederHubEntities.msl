@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="breederhubModelStoreContainer" CdmEntityContainer="breederhubEntities">
+    <EntitySetMapping Name="Breeds">
+      <EntityTypeMapping TypeName="breederhubModel.Breed">
+        <MappingFragment StoreEntitySet="Breeds">
+          <ScalarProperty Name="BreedId" ColumnName="BreedId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dogs">
+      <EntityTypeMapping TypeName="breederhubModel.Dog">
+        <MappingFragment StoreEntitySet="Dogs">
+          <ScalarProperty Name="Owner_FK" ColumnName="Owner_FK" />
+          <ScalarProperty Name="DogId" ColumnName="DogId" />
+          <ScalarProperty Name="Breed_FK" ColumnName="Breed_FK" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="KCNumber" ColumnName="KCNumber" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Litters">
+      <EntityTypeMapping TypeName="breederhubModel.Litter">
+        <MappingFragment StoreEntitySet="Litters">
+          <ScalarProperty Name="LitterId" ColumnName="LitterId" />
+          <ScalarProperty Name="Dame_FK" ColumnName="Dame_FK" />
+          <ScalarProperty Name="Sire_FK" ColumnName="Sire_FK" />
+          <ScalarProperty Name="Puppy_FK" ColumnName="Puppy_FK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Owners">
+      <EntityTypeMapping TypeName="breederhubModel.Owner">
+        <MappingFragment StoreEntitySet="Owners">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="MobileTelephone" ColumnName="MobileTelephone" />
+          <ScalarProperty Name="HomeTelephone" ColumnName="HomeTelephone" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorLogs">
+      <EntityTypeMapping TypeName="breederhubModel.ErrorLog">
+        <MappingFragment StoreEntitySet="ErrorLogs">
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+          <ScalarProperty Name="User_FK" ColumnName="User_FK" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+          <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

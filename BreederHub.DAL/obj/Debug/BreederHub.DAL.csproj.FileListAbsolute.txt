@@ -1,0 +1,10 @@
+C:\Development\breederhub\BreederHub\BreederHub.DAL\bin\Debug\BreederHub.DAL.dll.config
+C:\Development\breederhub\BreederHub\BreederHub.DAL\bin\Debug\BreederHub.DAL.dll
+C:\Development\breederhub\BreederHub\BreederHub.DAL\bin\Debug\BreederHub.DAL.pdb
+C:\Development\breederhub\BreederHub\BreederHub.DAL\bin\Debug\EntityFramework.dll
+C:\Development\breederhub\BreederHub\BreederHub.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Development\breederhub\BreederHub\BreederHub.DAL\bin\Debug\EntityFramework.xml
+C:\Development\breederhub\BreederHub\BreederHub.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Development\breederhub\BreederHub\BreederHub.DAL\obj\Debug\BreederHub.DAL.csprojResolveAssemblyReference.cache
+C:\Development\breederhub\BreederHub\BreederHub.DAL\obj\Debug\BreederHub.DAL.dll
+C:\Development\breederhub\BreederHub\BreederHub.DAL\obj\Debug\BreederHub.DAL.pdb

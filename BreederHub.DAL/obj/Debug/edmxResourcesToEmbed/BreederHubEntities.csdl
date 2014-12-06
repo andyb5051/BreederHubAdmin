@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="breederhubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Breed">
+    <Key>
+      <PropertyRef Name="BreedId" />
+    </Key>
+    <Property Name="BreedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dog">
+    <Key>
+      <PropertyRef Name="DogId" />
+    </Key>
+    <Property Name="DogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Breed_FK" Type="Int32" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KCNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Owner_FK" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Owner" Relationship="breederhubModel.FK_Dogs_Owners" FromRole="Dog" ToRole="Owner" />
+    <NavigationProperty Name="Litters" Relationship="breederhubModel.FK_Litters_Dames" FromRole="Dog" ToRole="Litter" />
+    <NavigationProperty Name="Litters1" Relationship="breederhubModel.FK_Litters_Puppies" FromRole="Dog" ToRole="Litter" />
+    <NavigationProperty Name="Litters2" Relationship="breederhubModel.FK_Litters_Sires" FromRole="Dog" ToRole="Litter" />
+  </EntityType>
+  <EntityType Name="Litter">
+    <Key>
+      <PropertyRef Name="LitterId" />
+    </Key>
+    <Property Name="LitterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dame_FK" Type="Int32" Nullable="false" />
+    <Property Name="Sire_FK" Type="Int32" Nullable="false" />
+    <Property Name="Puppy_FK" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dog" Relationship="breederhubModel.FK_Litters_Dames" FromRole="Litter" ToRole="Dog" />
+    <NavigationProperty Name="Dog1" Relationship="breederhubModel.FK_Litters_Puppies" FromRole="Litter" ToRole="Dog" />
+    <NavigationProperty Name="Dog2" Relationship="breederhubModel.FK_Litters_Sires" FromRole="Litter" ToRole="Dog" />
+  </EntityType>
+  <EntityContainer Name="breederhubEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Breeds" EntityType="Self.Breed" />
+    <EntitySet Name="Dogs" EntityType="Self.Dog" />
+    <EntitySet Name="Litters" EntityType="Self.Litter" />
+    <EntitySet Name="Owners" EntityType="breederhubModel.Owner" />
+    <AssociationSet Name="FK_Dogs_Owners" Association="breederhubModel.FK_Dogs_Owners">
+      <End Role="Owner" EntitySet="Owners" />
+      <End Role="Dog" EntitySet="Dogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Litters_Dames" Association="breederhubModel.FK_Litters_Dames">
+      <End Role="Dog" EntitySet="Dogs" />
+      <End Role="Litter" EntitySet="Litters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Litters_Puppies" Association="breederhubModel.FK_Litters_Puppies">
+      <End Role="Dog" EntitySet="Dogs" />
+      <End Role="Litter" EntitySet="Litters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Litters_Sires" Association="breederhubModel.FK_Litters_Sires">
+      <End Role="Dog" EntitySet="Dogs" />
+      <End Role="Litter" EntitySet="Litters" />
+    </AssociationSet>
+    <EntitySet Name="ErrorLogs" EntityType="breederhubModel.ErrorLog" />
+    <AssociationSet Name="FK_ErrorLogs_ErrorLogs" Association="breederhubModel.FK_ErrorLogs_ErrorLogs">
+      <End Role="ErrorLog" EntitySet="ErrorLogs" />
+      <End Role="ErrorLog1" EntitySet="ErrorLogs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="OwnerId" />
+    </Key>
+    <Property Name="OwnerId" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Postcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="HomeTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Dogs" Relationship="breederhubModel.FK_Dogs_Owners" FromRole="Owner" ToRole="Dog" />
+  </EntityType>
+  <Association Name="FK_Dogs_Owners">
+    <End Type="breederhubModel.Owner" Role="Owner" Multiplicity="1" />
+    <End Type="breederhubModel.Dog" Role="Dog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="OwnerId" />
+      </Principal>
+      <Dependent Role="Dog">
+        <PropertyRef Name="Owner_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Litters_Dames">
+    <End Type="breederhubModel.Dog" Role="Dog" Multiplicity="1" />
+    <End Type="breederhubModel.Litter" Role="Litter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dog">
+        <PropertyRef Name="DogId" />
+      </Principal>
+      <Dependent Role="Litter">
+        <PropertyRef Name="Dame_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Litters_Puppies">
+    <End Type="breederhubModel.Dog" Role="Dog" Multiplicity="1" />
+    <End Type="breederhubModel.Litter" Role="Litter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dog">
+        <PropertyRef Name="DogId" />
+      </Principal>
+      <Dependent Role="Litter">
+        <PropertyRef Name="Puppy_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Litters_Sires">
+    <End Type="breederhubModel.Dog" Role="Dog" Multiplicity="1" />
+    <End Type="breederhubModel.Litter" Role="Litter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dog">
+        <PropertyRef Name="DogId" />
+      </Principal>
+      <Dependent Role="Litter">
+        <PropertyRef Name="Sire_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ErrorCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorMessage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_FK" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PageUrl" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ErrorLogs1" Relationship="breederhubModel.FK_ErrorLogs_ErrorLogs" FromRole="ErrorLog" ToRole="ErrorLog1" />
+    <NavigationProperty Name="ErrorLog1" Relationship="breederhubModel.FK_ErrorLogs_ErrorLogs" FromRole="ErrorLog1" ToRole="ErrorLog" />
+  </EntityType>
+  <Association Name="FK_ErrorLogs_ErrorLogs">
+    <End Type="breederhubModel.ErrorLog" Role="ErrorLog" Multiplicity="1" />
+    <End Type="breederhubModel.ErrorLog" Role="ErrorLog1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ErrorLog">
+        <PropertyRef Name="ErrorId" />
+      </Principal>
+      <Dependent Role="ErrorLog1">
+        <PropertyRef Name="ErrorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
