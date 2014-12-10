@@ -1,0 +1,9 @@
+BreederHub/obj/*
+BreederHub/bin/*
+BreederHub/Web.config
+BreederHub/Web.Debug
+BreederHub/Web.Release
+
+BreederHub.DAL/obj/*
+BreederHub.DAL/bin/*
+BreederHub.DAL/App.config
